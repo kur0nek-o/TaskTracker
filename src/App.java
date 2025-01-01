@@ -1,9 +1,10 @@
-import main.java.services.HelloWorld;
+import main.java.models.Task;
+import main.java.enums.TaskStatus;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        HelloWorld helloWorld = new HelloWorld();
+        Task task = new Task(1, "Buy milk", TaskStatus.TODO);
 
-        helloWorld.sayHello();
+        System.out.println(task.toString());
     }
 }
