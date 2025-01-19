@@ -1,6 +1,8 @@
 package main.java.models;
 
 import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 
 import main.java.enums.TaskStatus;
 
@@ -15,8 +17,8 @@ public class Task {
         this.id = id;
         this.description = description;
         this.status = status;
-        this.createdAt = LocalDateTime.now();
-        this.updatedAt = LocalDateTime.now();
+        this.createdAt = getDateTime();
+        this.updatedAt = getDateTime();
     }
 
     // Getters
@@ -52,7 +54,7 @@ public class Task {
     }
 
     private void setUpdatedAt() {
-        this.updatedAt = LocalDateTime.now();
+        this.updatedAt = getDateTime();
     }
 
     @Override
@@ -64,5 +66,11 @@ public class Task {
                 ", createdAt=" + createdAt +
                 ", updatedAt=" + updatedAt +
                 '}';
+    }
+
+    private static LocalDateTime getDateTime() {
+        ZonedDateTime zonedDateTime = ZonedDateTime.of(LocalDateTime.now(), ZoneId.systemDefault());
+
+        return zonedDateTime.toLocalDateTime();
     }
 }
